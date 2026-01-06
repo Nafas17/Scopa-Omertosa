@@ -50,12 +50,13 @@ def get_state(game_id: str, player_id: str):
     return {
         "table": game.table,
         "hand": game.hands[player_index],
+        "opponent_hand_size": len(game.hands[other_index]),
         "player_taken": game.taken[player_index],
         "opponent_taken": game.taken[other_index],
-        "opponent_hand_size": len(game.hands[other_index]),
         "scopa": game.scopa[player_index],
         "opponent_scopa": game.scopa[other_index],
-        "turn": game.turn,
+        "your_turn": game.turn == player_index,  # <-- qui, True se tocca a te
+        "player_index": player_index,
         "game_over": game.game_over(),
         "score": game.score()
     }
