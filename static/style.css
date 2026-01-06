@@ -1,0 +1,66 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f0f0f5;
+    color: #333;
+    margin: 0;
+    padding: 0 20px;
+}
+
+h1 {
+    font-size: 2em;
+    margin-bottom: 0.5em;
+}
+
+h2, h3 {
+    margin: 0.5em 0;
+}
+
+/* Contenitore tavolo */
+#table, #hand, #opponent {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 10px 0 20px 0;
+    min-height: 80px;
+}
+
+/* Stile carte */
+.card {
+    display: inline-block;
+    padding: 5px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: #fff;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card img {
+    width: 60px; /* dimensione delle carte */
+    height: auto;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.card:hover img {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+}
+
+/* Carte non giocabili */
+.card.disabled img {
+    opacity: 0.5;
+    cursor: default;
+}
+
+/* Evidenziazione per carte prese o selezionabili */
+.card.highlight img {
+    border: 2px solid gold;
+}
+
+/* Tavolo e mano responsive */
+#table img, #hand img, #opponent img {
+    margin: 5px;
+}
