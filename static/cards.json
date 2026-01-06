@@ -1,0 +1,242 @@
+[
+    {
+        "id": 1,
+        "suit": "denari",
+        "value": 1,
+        "img": "static/cards/1.jpg"
+    },
+    {
+        "id": 2,
+        "suit": "denari",
+        "value": 2,
+        "img": "static/cards/2.jpg"
+    },
+    {
+        "id": 3,
+        "suit": "denari",
+        "value": 3,
+        "img": "static/cards/3.jpg"
+    },
+    {
+        "id": 4,
+        "suit": "denari",
+        "value": 4,
+        "img": "static/cards/4.jpg"
+    },
+    {
+        "id": 5,
+        "suit": "denari",
+        "value": 5,
+        "img": "static/cards/5.jpg"
+    },
+    {
+        "id": 6,
+        "suit": "denari",
+        "value": 6,
+        "img": "static/cards/6.jpg"
+    },
+    {
+        "id": 7,
+        "suit": "denari",
+        "value": 7,
+        "img": "static/cards/7.jpg"
+    },
+    {
+        "id": 8,
+        "suit": "denari",
+        "value": 8,
+        "img": "static/cards/8.jpg"
+    },
+    {
+        "id": 9,
+        "suit": "denari",
+        "value": 9,
+        "img": "static/cards/9.jpg"
+    },
+    {
+        "id": 10,
+        "suit": "denari",
+        "value": 10,
+        "img": "static/cards/10.jpg"
+    },
+    {
+        "id": 11,
+        "suit": "coppe",
+        "value": 1,
+        "img": "static/cards/11.jpg"
+    },
+    {
+        "id": 12,
+        "suit": "coppe",
+        "value": 2,
+        "img": "static/cards/12.jpg"
+    },
+    {
+        "id": 13,
+        "suit": "coppe",
+        "value": 3,
+        "img": "static/cards/13.jpg"
+    },
+    {
+        "id": 14,
+        "suit": "coppe",
+        "value": 4,
+        "img": "static/cards/14.jpg"
+    },
+    {
+        "id": 15,
+        "suit": "coppe",
+        "value": 5,
+        "img": "static/cards/15.jpg"
+    },
+    {
+        "id": 16,
+        "suit": "coppe",
+        "value": 6,
+        "img": "static/cards/16.jpg"
+    },
+    {
+        "id": 17,
+        "suit": "coppe",
+        "value": 7,
+        "img": "static/cards/17.jpg"
+    },
+    {
+        "id": 18,
+        "suit": "coppe",
+        "value": 8,
+        "img": "static/cards/18.jpg"
+    },
+    {
+        "id": 19,
+        "suit": "coppe",
+        "value": 9,
+        "img": "static/cards/19.jpg"
+    },
+    {
+        "id": 20,
+        "suit": "coppe",
+        "value": 10,
+        "img": "static/cards/20.jpg"
+    },
+    {
+        "id": 21,
+        "suit": "spade",
+        "value": 1,
+        "img": "static/cards/21.jpg"
+    },
+    {
+        "id": 22,
+        "suit": "spade",
+        "value": 2,
+        "img": "static/cards/22.jpg"
+    },
+    {
+        "id": 23,
+        "suit": "spade",
+        "value": 3,
+        "img": "static/cards/23.jpg"
+    },
+    {
+        "id": 24,
+        "suit": "spade",
+        "value": 4,
+        "img": "static/cards/24.jpg"
+    },
+    {
+        "id": 25,
+        "suit": "spade",
+        "value": 5,
+        "img": "static/cards/25.jpg"
+    },
+    {
+        "id": 26,
+        "suit": "spade",
+        "value": 6,
+        "img": "static/cards/26.jpg"
+    },
+    {
+        "id": 27,
+        "suit": "spade",
+        "value": 7,
+        "img": "static/cards/27.jpg"
+    },
+    {
+        "id": 28,
+        "suit": "spade",
+        "value": 8,
+        "img": "static/cards/28.jpg"
+    },
+    {
+        "id": 29,
+        "suit": "spade",
+        "value": 9,
+        "img": "static/cards/29.jpg"
+    },
+    {
+        "id": 30,
+        "suit": "spade",
+        "value": 10,
+        "img": "static/cards/30.jpg"
+    },
+    {
+        "id": 31,
+        "suit": "bastoni",
+        "value": 1,
+        "img": "static/cards/31.jpg"
+    },
+    {
+        "id": 32,
+        "suit": "bastoni",
+        "value": 2,
+        "img": "static/cards/32.jpg"
+    },
+    {
+        "id": 33,
+        "suit": "bastoni",
+        "value": 3,
+        "img": "static/cards/33.jpg"
+    },
+    {
+        "id": 34,
+        "suit": "bastoni",
+        "value": 4,
+        "img": "static/cards/34.jpg"
+    },
+    {
+        "id": 35,
+        "suit": "bastoni",
+        "value": 5,
+        "img": "static/cards/35.jpg"
+    },
+    {
+        "id": 36,
+        "suit": "bastoni",
+        "value": 6,
+        "img": "static/cards/36.jpg"
+    },
+    {
+        "id": 37,
+        "suit": "bastoni",
+        "value": 7,
+        "img": "static/cards/37.jpg"
+    },
+    {
+        "id": 38,
+        "suit": "bastoni",
+        "value": 8,
+        "img": "static/cards/38.jpg"
+    },
+    {
+        "id": 39,
+        "suit": "bastoni",
+        "value": 9,
+        "img": "static/cards/39.jpg"
+    },
+    {
+        "id": 40,
+        "suit": "bastoni",
+        "value": 10,
+        "img": "static/cards/40.jpg"
+    }
+]

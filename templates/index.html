@@ -1,47 +1,25 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <title>Scopa Multiplayer</title>
-    <link rel="stylesheet" href="/static/style.css">
-    <style>
-        body { font-family: Arial; text-align: center; }
-        .card {
-            display: inline-block;
-            padding: 10px;
-            margin: 5px;
-            border: 1px solid black;
-            cursor: pointer;
-            background: #f5f5f5;
-            transition: transform 0.2s;
-        }
-        .card img {
-            display: block;
-            margin: auto;
-        }
-        .card:hover {
-            transform: scale(1.1);
-        }
-        .disabled {
-            opacity: 0.4;
-            pointer-events: none;
-        }
-    </style>
+<meta charset="UTF-8">
+<title>Scopa Multiplayer</title>
+<link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
 
 <h1>🃏 Scopa Multiplayer</h1>
-
 <p><b>Player ID:</b> <span id="pid"></span></p>
 <p><b>Game ID:</b> <span id="gid"></span></p>
-
 <h2 id="turn"></h2>
 
+<h3>Carte avversario</h3>
+<div id="opponent" class="board"></div>
+
 <h3>Tavolo</h3>
-<div id="table"></div>
+<div id="table" class="board"></div>
 
 <h3>La tua mano</h3>
-<div id="hand"></div>
+<div id="hand" class="board"></div>
 
 <h3>Prese</h3>
 <p>Tu: <span id="taken"></span></p>
@@ -52,77 +30,6 @@
 
 <h2 id="gameover"></h2>
 
-<!-- Includiamo deck.js prima dello script del gioco -->
-<script src="/static/deck.js"></script>
-
-<script>
-let player_id = localStorage.getItem("player_id");
-if (!player_id) {
-    player_id = crypto.randomUUID();
-    localStorage.setItem("player_id", player_id);
-}
-document.getElementById("pid").innerText = player_id;
-
-let game_id = null;
-
-/* Crea o unisce partita */
-async function joinGame() {
-    const r = await fetch("/new_game", {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({player_id})
-    });
-    const d = await r.json();
-    game_id = d.game_id;
-    document.getElementById("gid").innerText = game_id;
-}
-
-/* Aggiorna stato */
-async function loadState() {
-    if (!game_id) return;
-
-    const r = await fetch(`/state/${game_id}/${player_id}`);
-    const d = await r.json();
-    if (d.error) return;
-
-    document.getElementById("turn").innerText =
-        d.turn === player_id ? "È il tuo turno" : "Turno avversario";
-
-    // Tavolo
-    document.getElementById("table").innerHTML =
-        d.table.map(c => `<div class="card">
-            <img src="${cardImg(c)}" alt="${c.value} di ${c.suit}" width="60">
-        </div>`).join("");
-
-    // Mano
-    document.getElementById("hand").innerHTML =
-        d.hand.map((c, i) => `<div class="card ${d.turn !== player_id ? "disabled" : ""}" onclick="play(${i})">
-            <img src="${cardImg(c)}" alt="${c.value} di ${c.suit}" width="60">
-        </div>`).join("");
-
-    document.getElementById("taken").innerText = d.player_taken.length;
-    document.getElementById("opp_taken").innerText = d.opponent_taken.length;
-
-    document.getElementById("scopa").innerText = d.scopa;
-    document.getElementById("opp_scopa").innerText = d.opponent_scopa;
-
-    if (d.game_over) {
-        document.getElementById("gameover").innerText =
-            "🎉 Partita finita — Punteggio: " + JSON.stringify(d.score);
-    }
-}
-
-/* Gioca carta */
-async function play(index) {
-    await fetch(`/play/${game_id}/${player_id}/${index}`, {
-        method: "POST"
-    });
-    loadState();
-}
-
-joinGame();
-setInterval(loadState, 1000);
-</script>
-
+<script src="/static/game.js"></script>
 </body>
 </html>
