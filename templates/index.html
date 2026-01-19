@@ -1,35 +1,74 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-<meta charset="UTF-8">
-<title>Scopa Multiplayer</title>
-<link rel="stylesheet" href="/static/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🃏 Scopa Multiplayer</title>
+  <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
 
-<h1>🃏 Scopa Multiplayer</h1>
-<p><b>Player ID:</b> <span id="pid"></span></p>
-<p><b>Game ID:</b> <span id="gid"></span></p>
-<h2 id="turn"></h2>
+  <header>
+    <h1>🃏 Scopa Multiplayer</h1>
+    <div class="info">
+      <p><b>Giocatore:</b> <span id="pid"></span></p>
+      <p><b>Partita:</b> <span id="gid"></span></p>
+      <p class="logout-link">
+        <a href="#" onclick="logout()">Cambia nickname / Esci</a>
+      </p>
+    </div>
+  </header>
 
-<h3>Carte avversario</h3>
-<div id="opponent" class="board"></div>
+  <main>
+    <section class="status">
+      <h2 id="turn" class="turn-wait">In attesa...</h2>
+      <p id="gameover" class="game-over" hidden>Partita terminata</p>
+    </section>
 
-<h3>Tavolo</h3>
-<div id="table" class="board"></div>
+    <section class="opponent-section">
+      <h3>Mano avversario (nascosta)</h3>
+      <div id="opp_hand" class="board opponent"></div>
+    </section>
 
-<h3>La tua mano</h3>
-<div id="hand" class="board"></div>
+    <section class="table-section">
+      <h3>Tavolo</h3>
+      <div id="table" class="board"></div>
+    </section>
 
-<h3>Prese</h3>
-<p>Tu: <span id="taken"></span></p>
-<p>Avversario: <span id="opp_taken"></span></p>
+    <section class="player-section">
+      <h3>La tua mano</h3>
+      <div id="hand" class="board player-hand"></div>
+    </section>
 
-<h3>Scope</h3>
-<p>Tu: <span id="scopa"></span> | Avversario: <span id="opp_scopa"></span></p>
+    <section class="scores">
+      <h3>Punteggi parziali</h3>
+      <div class="score-row">
+        <div class="score-player">
+          <strong>Tu</strong><br>
+          Carte prese: <span id="taken_count">0</span><br>
+          Scope: <span id="scopa">0</span>
+        </div>
+        <div class="score-player">
+          <strong>Avversario</strong><br>
+          Carte prese: <span id="opp_taken_count">0</span><br>
+          Scope: <span id="opp_scopa">0</span>
+        </div>
+      </div>
+    </section>
+  </main>
 
-<h2 id="gameover"></h2>
+  <script src="/static/game.js"></script>
 
-<script src="/static/game.js"></script>
+  <script>
+    // Funzione logout semplice (cancella localStorage e torna al login)
+    function logout() {
+      if (confirm("Vuoi davvero cambiare nickname o uscire?")) {
+        localStorage.removeItem("player_id");
+        localStorage.removeItem("username");
+        window.location.href = "/login";
+      }
+    }
+  </script>
+
 </body>
 </html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🃏 Scopa – Punteggio Finale</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <style>
+    body { background: linear-gradient(135deg, #f4f4f9, #e8ecef); min-height: 100vh; display: flex; align-items: center; justify-content: center; font-family: Arial; }
+    .container { background: white; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); padding: 40px; max-width: 500px; width: 90%; text-align: center; }
+    h1 { color: #e67e22; font-size: 2.8rem; margin-bottom: 20px; }
+    .winner { font-size: 1.8rem; font-weight: bold; margin: 20px 0; padding: 12px; border-radius: 10px; }
+    .you { background: #27ae60; color: white; }
+    .opponent { background: #e74c3c; color: white; }
+    .draw { background: #f39c12; color: white; }
+    table { width: 100%; margin: 20px 0; border-collapse: collapse; }
+    th, td { padding: 12px; border-bottom: 1px solid #eee; text-align: left; }
+    th { background: #f8f9fa; color: #555; }
+    .btn { margin-top: 30px; padding: 14px 28px; background: #e67e22; color: white; border: none; border-radius: 10px; font-size: 1.1rem; cursor: pointer; }
+    .btn:hover { background: #d35400; }
+    .error { color: #c0392b; margin-top: 20px; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Partita terminata!</h1>
+
+    <div id="winner" class="winner"></div>
+
+    <table>
+      <tr><th></th><th>Tu</th><th>Avversario</th></tr>
+      <tr><td>Punteggio totale</td><td id="score-you">—</td><td id="score-opp">—</td></tr>
+      <tr><td>Scope</td><td id="scopa-you">—</td><td id="scopa-opp">—</td></tr>
+      <tr><td>Carte prese</td><td id="cards-you">—</td><td id="cards-opp">—</td></tr>
+      <tr><td>Denari</td><td id="denari-you">—</td><td id="denari-opp">—</td></tr>
+    </table>
+
+    <button class="btn" onclick="window.location.href='/'">Gioca un'altra partita</button>
+
+    <div id="debug" class="error"></div>
+  </div>
+
+<script>
+    // Mostra subito che lo script parte
+    console.log("Script final_score avviato");
+
+    const debugEl = document.getElementById("debug");
+    const scoreRaw = localStorage.getItem("lastGameScore");
+
+    console.log("localStorage al caricamento della pagina:", scoreRaw);
+
+    if (!scoreRaw || scoreRaw === "{}") {
+        debugEl.textContent = "Nessun punteggio trovato in localStorage";
+        document.getElementById("winner").textContent = "Punteggio non disponibile";
+        return;  // OK qui perché dentro funzione
+    }
+
+    try {
+        const score = JSON.parse(scoreRaw);
+        console.log("Punteggio parsato con successo:", score);
+
+        // Assegna valori con fallback
+        const p1 = score.player1 ?? 0;
+        const p2 = score.player2 ?? 0;
+
+        document.getElementById("score-you").textContent = p1;
+        document.getElementById("score-opp").textContent = p2;
+        document.getElementById("scopa-you").textContent = score.scope?.[0] ?? 0;
+        document.getElementById("scopa-opp").textContent = score.scope?.[1] ?? 0;
+        document.getElementById("cards-you").textContent = score.carte_p1 ?? 0;
+        document.getElementById("cards-opp").textContent = score.carte_p2 ?? 0;
+        document.getElementById("denari-you").textContent = score.denari_p1 ?? 0;
+        document.getElementById("denari-opp").textContent = score.denari_p2 ?? 0;
+
+        // Determina vincitore
+        let winnerText = "Pareggio!";
+        let winnerClass = "draw";
+
+        if (p1 > p2) {
+            winnerText = "Hai vinto! 🎉";
+            winnerClass = "you";
+        } else if (p2 > p1) {
+            winnerText = "Avversario vince 😔";
+            winnerClass = "opponent";
+        }
+
+        document.getElementById("winner").textContent = winnerText;
+        document.getElementById("winner").className = "winner " + winnerClass;
+
+        debugEl.textContent = "Punteggio caricato con successo!";
+
+    } catch (e) {
+        console.error("Errore parsing JSON:", e);
+        debugEl.textContent = "Errore nel caricamento: " + e.message;
+        document.getElementById("winner").textContent = "Errore punteggio";
+    }
+</script>
+
+</body>
+</html>

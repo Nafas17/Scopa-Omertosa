@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🃏 Scopa Online – Entra o Crea Partita</title>
+  <link rel="stylesheet" href="/static/style.css">
+  
+</head>
+<body class="login-page">
+
+  <div class="login-box">
+    <h1>🃏 Scopa Online</h1>
+    <p class="subtitle">Scegli cosa fare</p>
+
+    <form id="loginForm">
+      <label for="nickname">Il tuo nickname</label>
+      <input type="text" id="nickname" placeholder="Es: Gennaro, Zi' Peppe..." required autofocus>
+
+      <div style="margin: 32px 0 16px; font-weight: bold; color: #555;">
+        Cosa vuoi fare?
+      </div>
+
+      <button type="button" class="btn btn-create" id="btnCreate">Crea nuova partita</button>
+
+      <label for="gameid" style="margin-top: 24px;">O inserisci ID partita esistente</label>
+      <input type="text" id="gameid" placeholder="Es: 123e4567-e89b-12d3-a456-426614174000">
+
+      <button type="button" class="btn btn-join" id="btnJoin">Entra in partita</button>
+
+      <div class="error-msg" id="errorMsg"></div>
+    </form>
+  </div>
+
+  <script>
+    const nicknameInput = document.getElementById("nickname");
+    const gameIdInput = document.getElementById("gameid");
+    const btnCreate = document.getElementById("btnCreate");
+    const btnJoin = document.getElementById("btnJoin");
+    const errorMsg = document.getElementById("errorMsg");
+
+    function showError(text) {
+      errorMsg.textContent = text;
+      errorMsg.style.display = "block";
+    }
+
+    function hideError() {
+      errorMsg.style.display = "none";
+    }
+
+    function saveAndRedirect() {
+      const nickname = nicknameInput.value.trim();
+      if (!nickname) {
+        showError("Il nickname è obbligatorio!");
+        return false;
+      }
+
+      localStorage.setItem("player_id", nickname);
+      localStorage.setItem("username", nickname);
+      return true;
+    }
+
+    // Crea nuova partita
+    btnCreate.addEventListener("click", async () => {
+      hideError();
+      if (!saveAndRedirect()) return;
+
+      // Rimuove eventuale game_id salvato
+      localStorage.removeItem("preferred_game_id");
+
+      window.location.href = "/";
+    });
+
+    // Entra in partita esistente
+    btnJoin.addEventListener("click", async () => {
+      hideError();
+      const gameId = gameIdInput.value.trim();
+
+      if (!gameId) {
+        showError("Inserisci l'ID della partita!");
+        return;
+      }
+
+      if (!saveAndRedirect()) return;
+
+      // Salviamo l'ID partita scelto
+      localStorage.setItem("preferred_game_id", gameId);
+
+      window.location.href = "/";
+    });
+
+    // Abilita/disabilita bottone join in base al contenuto
+    gameIdInput.addEventListener("input", () => {
+      btnJoin.disabled = !gameIdInput.value.trim();
+    });
+  </script>
+
+</body>
+</html>

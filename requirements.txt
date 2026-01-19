@@ -1,3 +1,6 @@
 fastapi
 uvicorn[standard]
 jinja2
+httptools
+
+#python -m uvicorn app.main:app --reload
